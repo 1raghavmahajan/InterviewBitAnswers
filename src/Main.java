@@ -1,3 +1,5 @@
+import com.sun.deploy.util.ArrayUtil;
+
 import java.util.*;
 import java.util.List;
 
@@ -455,28 +457,29 @@ public class Main {
         Integer p = st.get(0), q = st.get(0) + sz.get(0) - 1;
         int mx = sz.get(0), l = sz.get(0);
 
-        boolean reset = false; Integer saved = null;
+        boolean reset = false;
+        Integer saved = null;
         for (int i = 1; i < st.size(); i++) {
 
-            int both = l + sz.get(i) - (st.get(i) - (st.get(i-1) + sz.get(i-1)));
-            if(both>=sz.get(i)){
+            int both = l + sz.get(i) - (st.get(i) - (st.get(i - 1) + sz.get(i - 1)));
+            if (both >= sz.get(i)) {
                 l = both;
-                if(both>mx){
-                    if(reset){
+                if (both > mx) {
+                    if (reset) {
                         p = saved;
                         reset = false;
                     }
-                    q = st.get(i)+sz.get(i)-1;
+                    q = st.get(i) + sz.get(i) - 1;
                     mx = both;
                 }
-            }else {
+            } else {
                 l = sz.get(i);
                 reset = true;
                 saved = st.get(i);
-                if(sz.get(i) > mx){
+                if (sz.get(i) > mx) {
                     mx = sz.get(i);
                     p = st.get(i);
-                    q = st.get(i)+sz.get(i)-1;
+                    q = st.get(i) + sz.get(i) - 1;
                 }
             }
         }
@@ -567,8 +570,59 @@ public class Main {
         }
         return ss;
     }
-    
-    public int maximumGap(final List<Integer> A) {
+
+    public static int maximumGap(final List<Integer> A) {
+
+        int n = A.size();
+        if (n < 2) {
+            return 0;
+        }
+
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+
+        for (int i = 0; i < n; i++) {
+            max = Math.max(max, A.get(i));
+            min = Math.min(min, A.get(i));
+        }
+
+        //n-1 buckets -  we only care about max and min in each buckets
+        int[] bucketMaxima = new int[n - 1];
+        Arrays.fill(bucketMaxima, Integer.MIN_VALUE);
+        int[] bucketMinima = new int[n - 1];
+        Arrays.fill(bucketMinima, Integer.MAX_VALUE);
+
+        //bucket width
+        float delta = (float) (max - min) / ((float) n - 1);
+
+        //populate the bucket maxima and minima
+        for (int i = 0; i < n; i++) {
+            if (A.get(i) == max || A.get(i) == min) {
+                continue;
+            }
+
+            int bucketIndex = (int) Math.floor((A.get(i) - min) / delta);
+            bucketMaxima[bucketIndex] = bucketMaxima[bucketIndex] == Integer.MIN_VALUE ? A.get(i) : Math.max(bucketMaxima[bucketIndex], A.get(i));
+            bucketMinima[bucketIndex] = bucketMinima[bucketIndex] == Integer.MAX_VALUE ? A.get(i) : Math.min(bucketMinima[bucketIndex], A.get(i));
+        }
+
+        //find the maxgap - maxgaps
+        int prev = min;
+        int maxGap = 0;
+        for (int i = 0; i < n - 1; i++) {
+
+            //empty bucket according to Pigeonhole principle
+            if (bucketMinima[i] == Integer.MAX_VALUE) {
+                continue;
+            }
+
+            maxGap = Math.max(maxGap, bucketMinima[i] - prev);
+            prev = bucketMaxima[i];
+        }
+
+        maxGap = Math.max(maxGap, max - prev);
+
+        return maxGap;
     }
 
     public static void main(String[] args) {
@@ -584,11 +638,11 @@ public class Main {
         while (true) {
 
             Scanner sc = new Scanner(System.in).useDelimiter("\\s");
-//            int x = sc.nextInt();
-//            if (x == 0) {
-//                break;
-//            }
-//
+            int x = sc.nextInt();
+            if (x == 0) {
+                break;
+            }
+
 //            ArrayList<ArrayList<Integer>> aa = new ArrayList<>();
 //            for (int i = 0; i < x; i++) {
 //                ArrayList<Integer> list = new ArrayList<>();
@@ -610,23 +664,33 @@ public class Main {
 //                System.out.print("\n");
 //            }
 
-            String s = sc.nextLine().trim();
-            ArrayList<Integer> list = flip3(s);
+//            String s = sc.nextLine().trim();
+//            ArrayList<Integer> list = flip3(s);
 //            ArrayList<Integer> wave = findPerm(s, s.length()+1);
 
-//        ArrayList<ArrayList<Integer>> generate = generate(x);
-//        for (ArrayList<Integer> list : generate) {
-//            for (Integer aWave : list) {
-//                System.out.print(aWave);
-//                System.out.print(" ");
+
+            List<Integer> list = new ArrayList<>();
+            for (int j = 0; j < x; j++) {
+                int k = sc.nextInt();
+                list.add(k);
+            }
+
+            System.out.print(maximumGap(list));
+
+//            ArrayList<ArrayList<Integer>> generate = generate(x);
+//            for (ArrayList<Integer> list : generate) {
+//                for (Integer aWave : list) {
+//                    System.out.print(aWave);
+//                    System.out.print(" ");
+//                }
+//                System.out.print('\n');
 //            }
-//            System.out.print('\n');
-//        }
-//        System.out.print(firstMissingPositive(list));
-            if(list.size()>0)
-                System.out.println(list.get(0) + " " + list.get(1));
-            else
-                System.out.println("No flips needed");
+
+
+//            if(list.size()>0)
+//                System.out.println(list.get(0) + " " + list.get(1));
+//            else
+//                System.out.println("No flips needed");
         }
 
     }
