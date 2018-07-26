@@ -15,19 +15,18 @@ public class Main {
         while (true) {
 
             Scanner sc = new Scanner(System.in).useDelimiter("\\s");
-//            int x = sc.nextInt();
-//            if (x == 0) {
-//                break;
-//            }
-
-            List<Integer> list = new ArrayList<>();
-            for (int j = 0; j < 2; j++) {
-                int k = sc.nextInt();
-                list.add(k);
+            int x = sc.nextInt();
+            if (x == 0) {
+                break;
             }
 
-            System.out.println(new MathModule().uniquePaths(list.get(0),
-                    list.get(1)));
+//            ArrayList<Integer> list = new ArrayList<>();
+//            for (int j = 0; j < x; j++) {
+//                int k = sc.nextInt();
+//                list.add(k);
+//            }
+
+            System.out.println(ArraysModule.generateMatrix(x));
 
 //            ArrayList<ArrayList<Integer>> generate = generate(x);
 //            for (ArrayList<Integer> list : generate) {

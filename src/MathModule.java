@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@SuppressWarnings("WeakerAccess")
 public class MathModule {
 
     public static int isPalindrome(int A) {
@@ -158,6 +159,20 @@ public class MathModule {
                 b[r][c] += uniquePaths2(r, c+1);
             return b[r][c];
         }
+    }
+
+    public static int solve(ArrayList<Integer> A, int B, int C) {
+
+        //n num
+        //len = min {len(c), B}
+        //calc all
+        //- 0 vale
+        //if( len(C) = B )
+        // for i 0->len-1
+        //
+
+//        12345
+        return 0;
     }
 
 }

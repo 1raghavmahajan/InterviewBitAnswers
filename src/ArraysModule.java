@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import com.sun.deploy.util.ArrayUtil;
+
+import java.util.*;
 
 public class ArraysModule {
     public static class Interval {
@@ -622,5 +621,110 @@ public class ArraysModule {
         maxGap = Math.max(maxGap, max - prev);
 
         return maxGap;
+    }
+
+    public static int solve(ArrayList<Integer> A) {
+        A.sort((o1, o2) -> {
+            if(o1>o2)
+                return 1;
+            else if(o1<o2)
+                return -1;
+            else
+                return 0;
+        });
+        int size = A.size();
+        for (int i = 0; i < size; i++) {
+            if(i<size-1 && A.get(i).equals(A.get(i + 1))){
+                continue;
+            }
+            if(A.get(i) == size-i-1){
+                return 1;
+            }
+        }
+        return -1;
+    }
+
+    @SuppressWarnings("Duplicates")
+    public static ArrayList<ArrayList<Integer>> generateMatrix(int A) {
+        ArrayList<ArrayList<Integer>> list = new ArrayList<>(A);
+        for (int i = 0; i < A; i++) {
+            ArrayList<Integer> l = new ArrayList<>();
+            for (int j = 0; j < A; j++) {
+                l.add(0);
+            }
+            list.add(l);
+        }
+
+        ArrayList<ArrayList<Boolean>> flag = new ArrayList<>(A);
+        for (int i = 0; i < A; i++) {
+            ArrayList<Boolean> l = new ArrayList<>();
+            for (int j = 0; j < A; j++) {
+                l.add(false);
+            }
+            flag.add(l);
+        }
+
+        int k=1;
+        int x=0, y=0;
+        while(k<=A*A){
+
+            while (x<A && k<=A*A){
+                if(flag.get(y).get(x)) {
+                    break;
+                }
+                else {
+                    list.get(y).set(x, k);
+                    k++;
+                    flag.get(y).set(x,true);
+                    x++;
+                }
+            }
+            x--;
+            y++;
+
+            while (y<A && k<=A*A){
+                if(flag.get(y).get(x)) {
+                    break;
+                }
+                else {
+                    list.get(y).set(x, k);
+                    k++;
+                    flag.get(y).set(x,true);
+                    y++;
+                }
+            }
+            y--;
+            x--;
+
+            while (x>=0 && k<=A*A){
+                if(flag.get(y).get(x)) {
+                    break;
+                }
+                else {
+                    list.get(y).set(x, k);
+                    k++;
+                    flag.get(y).set(x,true);
+                    x--;
+                }
+            }
+            x++;
+            y--;
+
+            while (y>=0 && k<=A*A){
+                if(flag.get(y).get(x)) {
+                    break;
+                }
+                else {
+                    list.get(y).set(x, k);
+                    k++;
+                    flag.get(y).set(x,true);
+                    y--;
+                }
+            }
+            y++;
+            x++;
+        }
+
+        return list;
     }
 }
