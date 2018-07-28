@@ -14,19 +14,29 @@ public class Main {
 
         while (true) {
 
-            Scanner sc = new Scanner(System.in).useDelimiter("\n");
-//            int x = sc.nextInt();
-//            if (x == 0) {
-//                break;
-//            }
-            String x = sc.next();
-            if (x.isEmpty()) {
+            Scanner sc = new Scanner(System.in).useDelimiter("\\s");
+            int x1 = sc.nextInt();
+            if (x1 == 0) {
                 break;
             }
+            int x2 = sc.nextInt();
+            if (x2 == 0) {
+                break;
+            }
+//            String x = sc.next();
+//            if (x.isEmpty()) {
+//                break;
+//            }
 //            String x1 = sc.next();
 //            if (x1.isEmpty()) {
 //                break;
 //            }
+
+            ArrayList<Integer> list = new ArrayList<>();
+            for (int j = 0; j < x1; j++) {
+                int k = sc.nextInt();
+                list.add(k);
+            }
 
 //            ArrayList<String> list = new ArrayList<>();
 //            for (int j = 0; j < x; j++) {
@@ -34,7 +44,7 @@ public class Main {
 //                list.add(k);
 //            }
 
-            System.out.println(StringModule.prettyJSON(x));
+            System.out.println(MathModule.kthsmallest(list, x2));
 
 //            ArrayList<ArrayList<Integer>> generate = generate(x);
 //            for (ArrayList<Integer> list : generate) {

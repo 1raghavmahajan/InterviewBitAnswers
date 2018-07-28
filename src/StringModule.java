@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class StringModule {
 
@@ -305,4 +307,49 @@ public class StringModule {
         }
         return list;
     }
+
+    public static String intToRoman(int A){
+        int[] decVal = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+        String[] romVal = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+
+        String s = "";
+
+        for (int index = 0; index < decVal.length; index++) {
+            while (decVal[index] <= A) {
+                s += romVal[index];
+                A -= decVal[index];
+            }
+        }
+
+        return s;
+    }
+
+    public static int romanToInt(String A) {
+        int[] decVal = { 900, 1000, 400, 500, 90, 100, 40, 50, 9, 10, 4, 5, 1 };
+        String[] romVal = { "CM", "M", "CD", "D", "XC", "C", "XL", "L", "IX", "X", "IV", "V", "I" };
+
+        if(A.isEmpty())
+            return 0;
+
+        Integer n = 0;
+
+        for (int i = 0; i < decVal.length; i++) {
+            while (A.contains(romVal[i])){
+                n+=decVal[i];
+                A = A.replaceFirst(romVal[i], "");
+            }
+        }
+
+        return n;
+    }
+
+    public static int lengthOfLastWord(final String A) {
+        String[] split = A.split("\\s");
+        if(split.length>0){
+            return split[split.length-1].length();
+        }else
+            return 0;
+    }
+
+
 }

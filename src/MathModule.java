@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 @SuppressWarnings("WeakerAccess")
 public class MathModule {
@@ -173,6 +175,43 @@ public class MathModule {
 
 //        12345
         return 0;
+    }
+
+    @SuppressWarnings("Duplicates")
+    public static int kthsmallest(final List<Integer> A, int B) {
+        if(B<=A.size()/2) {
+            ArrayList<Integer> list = new ArrayList<>();
+            for (int i = 0; i < B; i++) {
+                list.add(A.get(i));
+            }
+            list.sort(Comparator.naturalOrder());
+            for (int i = B; i < A.size(); i++) {
+                int j=B-1;
+                while (j>=0 && A.get(i)<=list.get(j)){
+                    j--;
+                }
+                if(j<B-1)
+                    list.add(j+1, A.get(i));
+            }
+            return list.get(B - 1);
+        }else {
+            B = A.size()-B+1;
+
+            ArrayList<Integer> list = new ArrayList<>();
+            for (int i = 0; i < B; i++) {
+                list.add(A.get(i));
+            }
+            list.sort(Comparator.reverseOrder());
+            for (int i = B; i < A.size(); i++) {
+                int j=B-1;
+                while (j>=0 && A.get(i)>=list.get(j)){
+                    j--;
+                }
+                if(j<B-1)
+                    list.add(j+1, A.get(i));
+            }
+            return list.get(B - 1);
+        }
     }
 
 }
