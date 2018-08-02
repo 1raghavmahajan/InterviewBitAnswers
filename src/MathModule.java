@@ -214,4 +214,21 @@ public class MathModule {
         }
     }
 
+    public static int numRange(ArrayList<Integer> A, int B, int C) {
+        int x = 0;
+        for (int i = 0; i < A.size(); i++) {
+            int sum = A.get(i);
+            int j=i+1;
+            while (sum<=C){
+                if(sum>=B)
+                    x++;
+                if(j>=A.size())
+                    break;
+                sum+=A.get(j);
+                j++;
+            }
+        }
+        return x;
+    }
+
 }

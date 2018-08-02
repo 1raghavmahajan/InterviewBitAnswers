@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,10 +18,14 @@ public class Main {
             if (x1 == 0) {
                 break;
             }
-            int x2 = sc.nextInt();
-            if (x2 == 0) {
-                break;
-            }
+//            int x2 = sc.nextInt();
+//            if (x2 == 0) {
+//                break;
+//            }
+//            int x3 = sc.nextInt();
+//            if (x3 == 0) {
+//                break;
+//            }
 //            String x = sc.next();
 //            if (x.isEmpty()) {
 //                break;
@@ -39,12 +42,12 @@ public class Main {
             }
 
 //            ArrayList<String> list = new ArrayList<>();
-//            for (int j = 0; j < x; j++) {
+//            for (int j = 0; j < x1; j++) {
 //                String k = sc.next();
 //                list.add(k);
 //            }
 
-            System.out.println(MathModule.kthsmallest(list, x2));
+            System.out.println(StacksAndQueues.largestRectangleArea(list));
 
 //            ArrayList<ArrayList<Integer>> generate = generate(x);
 //            for (ArrayList<Integer> list : generate) {
