@@ -35,11 +35,11 @@ public class Main {
 //                break;
 //            }
 
-            ArrayList<Integer> list = new ArrayList<>();
-            for (int j = 0; j < x1; j++) {
-                int k = sc.nextInt();
-                list.add(k);
-            }
+//            ArrayList<Integer> list = new ArrayList<>();
+//            for (int j = 0; j < x1; j++) {
+//                int k = sc.nextInt();
+//                list.add(k);
+//            }
 
 //            ArrayList<String> list = new ArrayList<>();
 //            for (int j = 0; j < x1; j++) {
@@ -47,7 +47,22 @@ public class Main {
 //                list.add(k);
 //            }
 
-            System.out.println(StacksAndQueues.largestRectangleArea(list));
+            ListNode aa = new ListNode(1);
+            ListNode s = aa;
+
+            for (int j = 0; j < x1; j++) {
+                int k = sc.nextInt();
+                if(j == 0)
+                    aa.val = k;
+                else {
+                    aa.next = new ListNode(k);
+                    aa = aa.next;
+                }
+            }
+
+            LinkedLists.deleteDuplicates2(s);
+
+//            System.out.println(StacksAndQueues.largestRectangleArea(list));
 
 //            ArrayList<ArrayList<Integer>> generate = generate(x);
 //            for (ArrayList<Integer> list : generate) {

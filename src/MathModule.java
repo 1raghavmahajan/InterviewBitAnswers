@@ -166,7 +166,7 @@ public class MathModule {
     public static int solve(ArrayList<Integer> A, int B, int C) {
 
         //n num
-        //len = min {len(c), B}
+        //len = min {len(start), B}
         //calc all
         //- 0 vale
         //if( len(C) = B )
