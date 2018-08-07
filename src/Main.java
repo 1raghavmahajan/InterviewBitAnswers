@@ -18,14 +18,15 @@ public class Main {
             if (x1 == 0) {
                 break;
             }
-//            int x2 = sc.nextInt();
-//            if (x2 == 0) {
-//                break;
-//            }
+            int x2 = sc.nextInt();
+            if (x2 == 0) {
+                break;
+            }
 //            int x3 = sc.nextInt();
 //            if (x3 == 0) {
 //                break;
 //            }
+
 //            String x = sc.next();
 //            if (x.isEmpty()) {
 //                break;
@@ -60,7 +61,7 @@ public class Main {
                 }
             }
 
-            LinkedLists.deleteDuplicates2(s);
+            new LinkedLists().partition(s, x2);
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));
 
