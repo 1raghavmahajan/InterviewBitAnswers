@@ -18,10 +18,10 @@ public class Main {
             if (x1 == 0) {
                 break;
             }
-            int x2 = sc.nextInt();
-            if (x2 == 0) {
-                break;
-            }
+//            int x2 = sc.nextInt();
+//            if (x2 == 0) {
+//                break;
+//            }
 //            int x3 = sc.nextInt();
 //            if (x3 == 0) {
 //                break;
@@ -42,26 +42,26 @@ public class Main {
 //                list.add(k);
 //            }
 
-//            ArrayList<String> list = new ArrayList<>();
-//            for (int j = 0; j < x1; j++) {
-//                String k = sc.next();
-//                list.add(k);
-//            }
-
-            ListNode aa = new ListNode(1);
-            ListNode s = aa;
-
+            ArrayList<String> list = new ArrayList<>();
             for (int j = 0; j < x1; j++) {
-                int k = sc.nextInt();
-                if(j == 0)
-                    aa.val = k;
-                else {
-                    aa.next = new ListNode(k);
-                    aa = aa.next;
-                }
+                String k = sc.next();
+                list.add(k);
             }
 
-            new LinkedLists().partition(s, x2);
+//            ListNode aa = new ListNode(1);
+//            ListNode s = aa;
+//
+//            for (int j = 0; j < x1; j++) {
+//                int k = sc.nextInt();
+//                if(j == 0)
+//                    aa.val = k;
+//                else {
+//                    aa.next = new ListNode(k);
+//                    aa = aa.next;
+//                }
+//            }
+
+            new Hashing().isValidSudoku(list);
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));
 

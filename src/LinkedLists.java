@@ -4,7 +4,6 @@ import java.util.List;
 
 public class LinkedLists {
 
-
     //     Definition for singly-linked list.
     ListNode start;
 
