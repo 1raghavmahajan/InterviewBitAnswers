@@ -36,9 +36,9 @@ public class Hashing {
             if(!check(rows.get(i))){
                 return 0;
             }
-            boxes.set(3*(int)(i/3), boxes.get(3*(int)(i/3)) + rows.get(i).substring(0, 3));
-            boxes.set(3*(int)(i/3) + 1, boxes.get(3*(int)(i/3) + 1) + rows.get(i).substring(3, 6));
-            boxes.set(3*(int)(i/3) + 2, boxes.get(3*(int)(i/3) + 2) + rows.get(i).substring(6, 9));
+            boxes.set(3* (i/3), boxes.get(3* (i/3)) + rows.get(i).substring(0, 3));
+            boxes.set(3* (i/3) + 1, boxes.get(3* (i/3) + 1) + rows.get(i).substring(3, 6));
+            boxes.set(3* (i/3) + 2, boxes.get(3* (i/3) + 2) + rows.get(i).substring(6, 9));
             for (int j = 0; j < 9; j++) {
                 cols.set(j, cols.get(j)+rows.get(i).charAt(j));
             }

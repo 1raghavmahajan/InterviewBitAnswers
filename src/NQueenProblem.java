@@ -5,7 +5,11 @@ public class NQueenProblem
     private int N = 4;
     ArrayList<ArrayList<String>> l;
 
-    void addSol(int board[][])
+    NQueenProblem(){
+        l = new ArrayList<>();
+    }
+
+    private void addSol(int board[][])
     {
         ArrayList<String> ss = new ArrayList<>();
         for (int i = 0; i < N; i++)
@@ -22,7 +26,7 @@ public class NQueenProblem
         l.add(ss);
     }
 
-    boolean isSafe(int board[][], int row, int col)
+    private boolean isSafe(int board[][], int row, int col)
     {
         int i, j;
 
@@ -44,7 +48,7 @@ public class NQueenProblem
         return true;
     }
 
-    boolean solveNQUtil(int board[][], int col)
+    private boolean solveNQUtil(int board[][], int col)
     {
         if (col >= N) {
             addSol(board);
@@ -72,10 +76,22 @@ public class NQueenProblem
 
         int board[][] = new int[N][N];
 
-        l = new ArrayList<>();
-
+        l.clear();
         solveNQUtil(board, 0);
 
         return l;
     }
+
+    public static void iterate(){
+        NQueenProblem nQueenProblem = new NQueenProblem();
+
+        for (int i = 4; i < 15; i++) {
+            long startTime = System.nanoTime();
+            nQueenProblem.solveNQueens(i);
+//                System.out.println("N="+i+" S:"+nQueenProblem.solveNQueens(i).size());
+            long endTime = System.nanoTime();
+            System.out.print("{" + i + "," + ((endTime - startTime) / 1000000.0f) + "}, ");
+        }
+    }
+
 }

@@ -42,11 +42,11 @@ public class Main {
 //                list.add(k);
 //            }
 
-            ArrayList<String> list = new ArrayList<>();
-            for (int j = 0; j < x1; j++) {
-                String k = sc.next();
-                list.add(k);
-            }
+//            ArrayList<String> list = new ArrayList<>();
+//            for (int j = 0; j < x1; j++) {
+//                String k = sc.next();
+//                list.add(k);
+//            }
 
 //            ListNode aa = new ListNode(1);
 //            ListNode s = aa;
@@ -61,7 +61,18 @@ public class Main {
 //                }
 //            }
 
-            new Hashing().isValidSudoku(list);
+            ArrayList<ArrayList<Character>> list = new ArrayList<>();
+            for (int j = 0; j < x1; j++) {
+                String k = sc.next();
+                ArrayList<Character> characters = new ArrayList<>();
+                for (char c : k.toCharArray()) {
+                    characters.add(c);
+                }
+                list.add(characters);
+            }
+
+            new BacktrackingModule().solve(list);
+            System.out.println(list);
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));
 
