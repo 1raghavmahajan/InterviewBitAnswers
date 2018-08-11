@@ -61,18 +61,20 @@ public class Main {
 //                }
 //            }
 
-            ArrayList<ArrayList<Character>> list = new ArrayList<>();
-            for (int j = 0; j < x1; j++) {
-                String k = sc.next();
-                ArrayList<Character> characters = new ArrayList<>();
-                for (char c : k.toCharArray()) {
-                    characters.add(c);
-                }
-                list.add(characters);
-            }
+//            ArrayList<ArrayList<Character>> list = new ArrayList<>();
+//            for (int j = 0; j < x1; j++) {
+//                String k = sc.next();
+//                ArrayList<Character> characters = new ArrayList<>();
+//                for (char c : k.toCharArray()) {
+//                    characters.add(c);
+//                }
+//                list.add(characters);
+//            }
+//
+//            new BacktrackingModule().solve(list);
+//            System.out.println(list);
 
-            new BacktrackingModule().solve(list);
-            System.out.println(list);
+
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));
 

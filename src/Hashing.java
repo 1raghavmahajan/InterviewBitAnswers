@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Hashing {
 
@@ -69,6 +66,77 @@ public class Hashing {
             }
         }
         return true;
+    }
+
+
+    public int longestConsecutive(final List<Integer> A) {
+        if(A==null || A.size()==0)
+            return 0;
+
+        HashSet<Integer> uni = new HashSet<>(A);
+
+        HashMap<Integer, Integer> set = new HashMap<>();
+
+        int ms = 1;
+
+        for (Integer i : uni) {
+            if(set.containsKey(i-1) && set.containsKey(i+1)){
+
+                Integer s = set.get(i - 1);
+                Integer e = set.get(i + 1);
+
+                if(s<i-1){
+                    set.remove(i-1);
+                    set.put(s, e);
+                }else if(s == i-1){
+                    set.put(s, e);
+                }
+
+                if(e>i+1){
+                    set.remove(i+1);
+                    set.put(e, s);
+                }else if(e == i+1){
+                    set.put(e, s);
+                }
+
+                if(e-s+1>ms){
+                    ms = e-s+1;
+                }
+
+            } else if(set.containsKey(i-1)){
+                Integer o = set.get(i - 1);
+                if(o<i-1){
+                    set.remove(i-1);
+                    set.put(i, o);
+                    set.put(o, i);
+                    if(i-o+1>ms)
+                        ms = i-o+1;
+                }else if(o == i-1){
+                    set.put(i, i-1);
+                    set.put(i-1, i);
+                    if(ms<2)
+                        ms = 2;
+                }
+            }else if(set.containsKey(i+1)){
+                Integer o = set.get(i + 1);
+                if(o>i+1){
+                    set.remove(i+1);
+                    set.put(i, o);
+                    set.put(o, i);
+                    if(o-i+1>ms)
+                        ms = o-i+1;
+                }else if(o == i+1){
+                    set.put(i, i+1);
+                    set.put(i+1, i);
+                    if(ms<2)
+                        ms = 2;
+                }
+            }
+            else {
+                set.put(i, i);
+            }
+        }
+        return ms;
     }
 
 }
