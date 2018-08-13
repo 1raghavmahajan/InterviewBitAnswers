@@ -36,11 +36,11 @@ public class Main {
 //                break;
 //            }
 
-//            ArrayList<Integer> list = new ArrayList<>();
-//            for (int j = 0; j < x1; j++) {
-//                int k = sc.nextInt();
-//                list.add(k);
-//            }
+            ArrayList<Integer> list = new ArrayList<>();
+            for (int j = 0; j < x1; j++) {
+                int k = sc.nextInt();
+                list.add(k);
+            }
 
 //            ArrayList<String> list = new ArrayList<>();
 //            for (int j = 0; j < x1; j++) {
@@ -70,11 +70,8 @@ public class Main {
 //                }
 //                list.add(characters);
 //            }
-//
-//            new BacktrackingModule().solve(list);
-//            System.out.println(list);
 
-
+            System.out.println(DP.longestSubsequenceLength(list));
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));
 

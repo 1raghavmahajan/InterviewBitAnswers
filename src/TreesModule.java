@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class TreesModule {
 
     private boolean isLess(TreeNode l, int v) {
@@ -52,6 +54,9 @@ public class TreesModule {
     }
 
     public int isValidBST(TreeNode A) {
+
+        int arr[];
+
 
         if (A == null)
             return 1;
