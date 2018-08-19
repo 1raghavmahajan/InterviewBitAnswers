@@ -6,11 +6,11 @@ public class Main {
 
         while (true) {
 
-            Scanner sc = new Scanner(System.in).useDelimiter("\\s");
-            int x1 = sc.nextInt();
-            if (x1 == 0) {
-                break;
-            }
+            Scanner sc = new Scanner(System.in).useDelimiter("^([\\s\\n]+)");
+//            int x1 = sc.nextInt();
+//            if (x1 == 0) {
+//                break;
+//            }
 //            int x2 = sc.nextInt();
 //            if (x2 == 0) {
 //                break;
@@ -35,11 +35,11 @@ public class Main {
 //                list.add(k);
 //            }
 
-            ArrayList<String> list = new ArrayList<>();
-            for (int j = 0; j < x1; j++) {
-                String k = sc.next();
-                list.add(k);
-            }
+//            ArrayList<String> list = new ArrayList<>();
+//            for (int j = 0; j < x1; j++) {
+//                String k = sc.next();
+//                list.add(k);
+//            }
 
 //            ListNode aa = new ListNode(1);
 //            ListNode s = aa;
@@ -64,11 +64,7 @@ public class Main {
 //                list.add(characters);
 //            }
 
-            String[] aa = new String[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                aa[i] = list.get(i);
-            }
-            System.out.println(Arrays.deepToString(new DP().queenAttack(aa)));
+            System.out.println(new DP().rodCut(0, new ArrayList<>()));
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));
 
