@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Greedy {
@@ -134,6 +135,72 @@ public class Greedy {
     }
 
     public int bulbs(ArrayList<Integer> A) {
+        int num = 0;
+        int x = 0;
+        for (int i = 0; i < A.size(); i++) {
+            if(A.get(i)==x){
+                num++;
+                if(x==0){
+                    x = 1;
+                }else {
+                    x = 0;
+                }
+            }
+        }
+        return num;
+    }
 
+    public int candy(ArrayList<Integer> A) {
+
+        if(A.size()<2){
+            return A.size();
+        }
+
+        int a = 0;
+        int[] arr = new int[A.size()];
+        Arrays.fill(arr, 1);
+        boolean[] f = new boolean[A.size()];
+        Arrays.fill(f, false);
+        for (int i = 1; i < A.size(); i++) {
+            if(A.get(i)<A.get(i-1)){
+                if(arr[i-1]==1) {
+                    f[i - 1] = true;
+                }else {
+                    f[i-1] = true;
+                    arr[i] = 1;
+                }
+            }else if(A.get(i)>A.get(i-1)){
+                arr[i] = arr[i-1]+1;
+            }else {
+                arr[i] = 1;
+            }
+        }
+
+        for (int i = A.size()-1; i >0 ; i--) {
+            a+=arr[i];
+            if(f[i-1]){
+                arr[i-1] = Math.max(arr[i]+1, arr[i-1]);
+            }
+        }
+        a+=arr[0];
+
+        return a;
+    }
+
+    public int mice(ArrayList<Integer> A, ArrayList<Integer> B) {
+        A.sort(null);
+        B.sort(null);
+        int max = 0;
+
+        for (int i = 0; i < A.size(); i++) {
+            int abs = Math.abs(A.get(i) - B.get(i));
+            if(abs >max){
+                max = abs;
+            }
+        }
+
+
+
+        String s = "";
     }
 }

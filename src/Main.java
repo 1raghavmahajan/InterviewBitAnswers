@@ -9,10 +9,10 @@ public class Main {
         for (int t = 0; t < 5; t++) {
 
             Scanner sc = new Scanner(System.in);
-//            int x1 = sc.nextInt();
-//            if (x1 == 0) {
-//                break;
-//            }
+            int x1 = sc.nextInt();
+            if (x1 == 0) {
+                break;
+            }
 //            int x2 = sc.nextInt();
 //            if (x2 == 0) {
 //                break;
@@ -31,11 +31,11 @@ public class Main {
 //                break;
 //            }
 
-//            ArrayList<Integer> list = new ArrayList<>();
-//            for (int j = 0; j < x1; j++) {
-//                int k = sc.nextInt();
-//                list.add(k);
-//            }
+            ArrayList<Integer> list = new ArrayList<>();
+            for (int j = 0; j < x1; j++) {
+                int k = sc.nextInt();
+                list.add(k);
+            }
 
 //            ArrayList<String> list = new ArrayList<>();
 //            for (int j = 0; j < x1; j++) {
@@ -67,21 +67,20 @@ public class Main {
 //            }
 
 
-            String s = "";
-            for (int i = 0; i < 989; i++) {
-                switch (random.nextInt(3)) {
-                    case 0:
-                        s+='x';
-                        break;
-                    case 1:
-                    case 2:
-                    case 3:
-                        s+='.';
-                }
-            }
-
-            System.out.println(s);
-            System.out.println(new Greedy().seats(s));
+//            String s = "";
+//            for (int i = 0; i < 989; i++) {
+//                switch (random.nextInt(3)) {
+//                    case 0:
+//                        s+='x';
+//                        break;
+//                    case 1:
+//                    case 2:
+//                    case 3:
+//                        s+='.';
+//                }
+//            }
+//            System.out.println(s);
+            System.out.println(new Greedy().candy(list));
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));
 
