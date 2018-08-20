@@ -1,12 +1,14 @@
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        Random random = new Random(Calendar.getInstance().getTime().getTime());
 
-        while (true) {
+        for (int t = 0; t < 5; t++) {
 
-            Scanner sc = new Scanner(System.in).useDelimiter("^([\\s\\n]+)");
+            Scanner sc = new Scanner(System.in);
 //            int x1 = sc.nextInt();
 //            if (x1 == 0) {
 //                break;
@@ -64,7 +66,22 @@ public class Main {
 //                list.add(characters);
 //            }
 
-            System.out.println(new DP().rodCut(0, new ArrayList<>()));
+
+            String s = "";
+            for (int i = 0; i < 989; i++) {
+                switch (random.nextInt(3)) {
+                    case 0:
+                        s+='x';
+                        break;
+                    case 1:
+                    case 2:
+                    case 3:
+                        s+='.';
+                }
+            }
+
+            System.out.println(s);
+            System.out.println(new Greedy().seats(s));
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));
 

@@ -794,23 +794,43 @@ public class DP {
 //    int n;
     ArrayList<Integer> arr;
     HashMap<Tuple, Integer> map;
+    int min;
     public ArrayList<Integer> rodCut(int A, ArrayList<Integer> B) {
 
         n = A;
+        min = Integer.MAX_VALUE;
 
         map = new HashMap<>();
         arr = new ArrayList<>(B);
         arr.sort(null);
 
-        minCut(new ArrayList<>(), B);
+        minCut(new ArrayList<>(), B, 0);
         return B;
     }
 
-    int minCut(ArrayList<Integer> curr, ArrayList<Integer> rem){
+    Pair<Integer, ArrayList<Integer>> minCut(ArrayList<Integer> curr, ArrayList<Integer> rem, int cc){
 
         if(rem.size() == 1){
 
+            Integer integer = rem.get(0);
+            int i = arr.indexOf(integer);
+            int h = n, l = 0;
+            if(i>0 && i<arr.size()-1){
+                h = arr.get(i+1);
+                l = arr.get(i-1);
+            }else {
+                if(i == 0){
+                    h = arr.get(i+1);
+                }else {
+                    l = arr.get(i-1);
+                }
+            }
 
+            cc+=h-l;
+
+            ArrayList<Integer> t = new ArrayList<>(curr);
+            t.add(integer);
+            return new Pair<>(cc, t);
 
         }
 
@@ -842,7 +862,7 @@ public class DP {
                 t.remove(i);
                 ArrayList<Integer> t2 = new ArrayList<>(curr);
                 t2.add(num);
-                integer = minCut(t2, t);
+                Pair<Integer, ArrayList<Integer>> integerArrayListPair = minCut(t2, t, cc + minmore - maxless);
             }
 
             if(integer+minmore-maxless<x){
@@ -850,7 +870,26 @@ public class DP {
             }
 
         }
-        return x;
+        return null;
+    }
+
+    //flip-array
+    ArrayList<Integer> list;
+    int minF;
+    public int solve(final List<Integer> A) {
+        list = new ArrayList<>(A);
+        list.sort(null);
+        minF = Integer.MAX_VALUE;
+        return 0;
+    }
+    public int getMinFlip(List<Integer> b, int i, ArrayList<Integer> flips){
+        Integer integer = b.get(i);
+        if(b.size()-1 == i){
+
+        }
+//        int min = getMinFlip(b.subList(1, b.size()));
+
+        return Math.min(integer+min, min-integer);
     }
 
 }
