@@ -231,4 +231,96 @@ public class MathModule {
         return x;
     }
 
+    private static int fr(String str, int low, int high) {
+        int countRight = 0, i;
+
+        for (i = low + 1; i <= high; ++i)
+            if (str.charAt(i) < str.charAt(low))
+                ++countRight;
+
+        return countRight;
+    }
+    public static int findRank (String str) {
+        int len = str.length();
+        int mul = 1;
+        int rank = 1;
+        int countRight;
+
+        for (int i = len-1; i >=0; i--)
+        {
+            if(i<len-1) {
+                mul *= len - i - 1;
+            }
+            mul = mul % 1000003;
+
+            countRight = fr(str, i, len-1);
+
+            rank += (countRight * mul) % 1000003 ;
+            rank = rank % 1000003;
+        }
+
+        return rank;
+    }
+    static int fact(int n)
+    {
+        return (n <= 1)? 1 :n * fact(n-1);
+    }
+
+    public static void arrange(ArrayList<Integer> a) {
+        if(a.size()<2)
+            return;
+
+        for (int i = 0; i < a.size(); i++) {
+            int j = i;
+            int saved = a.get(i);
+            int n = a.get(j);
+            if(n<0)
+                continue;
+            while (n>=0){
+                if(n==i){
+                    a.set(j, -1*saved);
+                    j = n;
+                    n = saved;
+                    break;
+                }
+                Integer q = a.get(n);
+                if(q<0){
+                    break;
+                }
+                if(q==0) {
+                    a.set(j, Integer.MIN_VALUE);
+                }else {
+                    a.set(j, -1 * q);
+                }
+                j = n;
+                n = q;
+            }
+        }
+
+        for (int i = 0; i < a.size(); i++) {
+            Integer integer = a.get(i);
+            if(integer == Integer.MIN_VALUE){
+                a.set(i, 0);
+            }else {
+                a.set(i, -1*integer);
+            }
+        }
+
+    }
+
+    public ArrayList<String> fizzBuzz(int A) {
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 1; i < A; i++) {
+            if(i%3==0 && i%5==0){
+                list.add("FizzBuzz");
+            }else if(i%3==0){
+                list.add("Fizz");
+            }else if(i%5==0){
+                list.add("Buzz");
+            }else {
+                list.add(String.valueOf(i));
+            }
+        }
+        return list;
+    }
 }

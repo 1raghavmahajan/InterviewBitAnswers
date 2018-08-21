@@ -1,3 +1,5 @@
+import DP.GFG;
+
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -79,8 +81,9 @@ public class Main {
 //                        s+='.';
 //                }
 //            }
-//            System.out.println(s);
-            System.out.println(new Greedy().candy(list));
+
+            MathModule.arrange(list);
+            System.out.println(list);
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));
 

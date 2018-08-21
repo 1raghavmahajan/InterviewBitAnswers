@@ -1,3 +1,5 @@
+package DP;
+
 import javafx.util.Pair;
 
 import java.util.*;
@@ -890,6 +892,72 @@ public class DP {
 //        int min = getMinFlip(b.subList(1, b.size()));
 
         return Math.min(integer+min, min-integer);
+    }
+
+
+    //distinct-subsequences
+    ArrayList<ArrayList<Integer>> pos;
+    public int numDistinct(String A, String B) {
+        pos = new ArrayList<>();
+        for (int i = 0; i < B.length(); i++) {
+            char c = B.charAt(i);
+            int j = 0;
+            if(i>0){
+                j = pos.get(i-1).get(0)+1 ;
+            }
+            ArrayList<Integer> list = new ArrayList<>();
+            for (; j < A.length(); j++) {
+                if(A.charAt(j)==c){
+                    list.add(j);
+                }
+            }
+            if(list.size()==0)
+                return 0;
+            else
+                pos.add(list);
+        }
+
+        rec(-1, 0);
+
+        return bc;
+    }
+    int bc = 0;
+    int rec(int prev, int d){
+        ArrayList<Integer> list = pos.get(d);
+        if(list.size()==0) {
+            bc = 0;
+            return -1;
+        }
+        if(list.size()==1) {
+            if(list.get(0)<=prev){
+                return 0;
+            }else {
+                prev = list.get(0);
+                if(d==pos.size()-1){
+                    bc++;
+                    return 0;
+                }else {
+                    rec(prev, d+1);
+                }
+            }
+        }
+        if(list.get(list.size()-1)<=prev){
+            return 0;
+        }
+        for (int i=0;i<list.size();i++) {
+            int num = list.get(i);
+            if (num <= prev) {
+                continue;
+            } else {
+                if (d == pos.size() - 1) {
+                    bc += list.size() - i;
+                    break;
+                } else {
+                    rec(num, d + 1);
+                }
+            }
+        }
+        return 0;
     }
 
 }

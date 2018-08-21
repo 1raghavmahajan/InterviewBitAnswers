@@ -2,6 +2,7 @@ import com.sun.deploy.util.ArrayUtil;
 
 import java.util.*;
 
+@SuppressWarnings("Duplicates")
 public class ArraysModule {
     public static class Interval {
         int start;
@@ -726,5 +727,59 @@ public class ArraysModule {
         }
 
         return list;
+    }
+
+    //largest-number - tle
+    public String largestNumber(final List<Integer> A) {
+        A.sort(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                String s1 = o1.toString();
+                String s2 = o2.toString();
+                int i=0;
+                while (i<s1.length() && i<s2.length()){
+                    int c1 = s1.charAt(i) - '0';
+                    int c2 = s2.charAt(i) - '0';
+
+                    if(c1>c2){
+                        return -1;
+                    }else if(c1<c2){
+                        return 1;
+                    }
+
+                    i++;
+                }
+
+                String s12 = s1+s2;
+                String s21 = s2+s1;
+
+                i=0;
+                while (i<s12.length() && i<s21.length()){
+                    int c1 = s12.charAt(i) - '0';
+                    int c2 = s21.charAt(i) - '0';
+
+                    if(c1>c2){
+                        return -1;
+                    }else if(c1<c2){
+                        return 1;
+                    }
+
+                    i++;
+                }
+
+                return 0;
+            }
+        });
+
+        if(A.get(0)==0){
+            return "0";
+        }
+
+        String s = "";
+        for (Integer integer : A) {
+            s+=integer;
+        }
+
+        return s;
     }
 }

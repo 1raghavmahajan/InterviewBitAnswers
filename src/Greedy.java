@@ -199,8 +199,6 @@ public class Greedy {
             }
         }
 
-
-
-        String s = "";
+        return max;
     }
 }
