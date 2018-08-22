@@ -174,12 +174,12 @@ public class DP {
         return a;
     }
 
+    //Edit Distance
     private int minof3(int x, int y, int z) {
         if (x <= y && x <= z) return x;
         if (y <= x && y <= z) return y;
         else return z;
     }
-
     public int minDistance(String str1, String str2) {
         int m = str1.length();
         int n = str2.length();
@@ -215,7 +215,6 @@ public class DP {
 
         return dp[m][n];
     }
-
     public int minDistance2(String A, String B) {
 
         int diff = B.length() - A.length();

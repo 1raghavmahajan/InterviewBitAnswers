@@ -8,13 +8,13 @@ public class Main {
         System.out.println("Hello World!");
         Random random = new Random(Calendar.getInstance().getTime().getTime());
 
-        for (int t = 0; t < 5; t++) {
+        for (int t = 0; t < 1; t++) {
 
             Scanner sc = new Scanner(System.in);
-            int x1 = sc.nextInt();
-            if (x1 == 0) {
-                break;
-            }
+//            int x1 = sc.nextInt();
+//            if (x1 == 0) {
+//                break;
+//            }
 //            int x2 = sc.nextInt();
 //            if (x2 == 0) {
 //                break;
@@ -33,11 +33,11 @@ public class Main {
 //                break;
 //            }
 
-            ArrayList<Integer> list = new ArrayList<>();
-            for (int j = 0; j < x1; j++) {
-                int k = sc.nextInt();
-                list.add(k);
-            }
+//            ArrayList<Integer> list = new ArrayList<>();
+//            for (int j = 0; j < x1; j++) {
+//                int k = sc.nextInt();
+//                list.add(k);
+//            }
 
 //            ArrayList<String> list = new ArrayList<>();
 //            for (int j = 0; j < x1; j++) {
@@ -82,8 +82,8 @@ public class Main {
 //                }
 //            }
 
-            MathModule.arrange(list);
-            System.out.println(list);
+            GFG.matrixMul();
+//            System.out.println(list);
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));
 
