@@ -4,8 +4,9 @@ import javafx.util.Pair;
 
 import java.util.*;
 
-@SuppressWarnings("Duplicates")
+@SuppressWarnings({"Duplicates", "unused"})
 public class GFG {
+
     //    longest-increasing-subsequence
     public static void lis() {
 
@@ -272,6 +273,7 @@ public class GFG {
     //    matrix-chain-multiplication (memoization) 0.468sec
     private static int[] mat;
     private static HashMap<Pair<Integer, Integer>, Integer> map;
+
     public static void matrixMul() {
 
         Scanner sc = new Scanner(System.in);
@@ -289,6 +291,7 @@ public class GFG {
             System.out.println(ff(0, n - 1));
         }
     }
+
     private static Integer ff(int s, int e) {
         Pair<Integer, Integer> key = new Pair<>(s, e);
         if (map.containsKey(key)) {
@@ -331,6 +334,7 @@ public class GFG {
     //    matrix-chain-multiplication (tabulation) 0.28s
 //    private static int[] mat;
     private static int[][] dp;
+
     public static void matrixMul2() {
 
         Scanner sc = new Scanner(System.in);
@@ -360,10 +364,11 @@ public class GFG {
                 }
             }
 
-            System.out.println(dp[0][n-1]);
+            System.out.println(dp[0][n - 1]);
         }
 
     }
+
     private static void ff2(int s, int e) {
 
         if (dp[s][e] == 0) {
@@ -399,6 +404,201 @@ public class GFG {
 
         }
 
+    }
+
+    //    nCr (tabulation) 0.19s
+    public static void nCr() {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int r = sc.nextInt();
+            if (r > n || r < 0) {
+                System.out.println(0);
+                continue;
+            }
+            int[][] arr = new int[n + 1][n + 1];
+            arr[0][0] = 1;
+            for (int i = 1; i <= n; i++) {
+                for (int j = 0; j <= i; j++) {
+                    if (j == 0 || j == i) {
+                        arr[i][j] = 1;
+                        continue;
+                    }
+                    arr[i][j] = ((arr[i - 1][j] % 1000000007) + (arr[i - 1][j - 1] % 1000000007)) % 1000000007;
+                    if (i == n && j == r) {
+                        System.out.println(arr[i][j]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public static void knapsack01() {
+
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int w = sc.nextInt();
+
+            ArrayList<Integer> v = new ArrayList<>(n);
+            ArrayList<Pair<Integer, Integer>> list = new ArrayList<>(n);
+
+            for (int i = 0; i < n; i++) {
+                v.add(sc.nextInt());
+            }
+            for (int i = 0; i < n; i++) {
+                list.add(new Pair<>(sc.nextInt(), v.get(i)));
+            }
+
+            list.sort((o1, o2) -> {
+                int k = Integer.compare(o1.getKey(), o2.getKey());
+                if (k == 0) {
+                    return (-1 * Integer.compare(o1.getValue(), o2.getValue()));
+                } else
+                    return k;
+            });
+
+            if (list.get(0).getKey() > w) {
+                System.out.println(0);
+                continue;
+            }
+            for (int i = 1; i < list.size(); i++) {
+                if (list.get(i).getKey() > w) {
+                    while (i < list.size()) {
+                        list.remove(i);
+                    }
+                    break;
+                }
+            }
+
+            ArrayList<Pair<Integer, HashSet<Integer>>> dp = new ArrayList<>();
+            dp.add(new Pair<>(0, new HashSet<>()));
+
+            for (int i = 1; i <= w; i++) {
+                Pair<Integer, HashSet<Integer>> bef = dp.get(i - 1);
+
+                Pair<Integer, HashSet<Integer>> toAdd = new Pair<>(bef.getKey(), bef.getValue());
+
+                int max = bef.getKey();
+                for (int j = 0; j < list.size(); j++) {
+                    Pair<Integer, Integer> item = list.get(j);
+                    Integer ww = item.getKey();
+                    if (ww <= i) {
+                        Pair<Integer, HashSet<Integer>> ll = dp.get(i - ww);
+                        if (ll.getValue().contains(j)) {
+
+                        } else {
+                            int i1 = ll.getKey() + item.getValue();
+                            if (i1 > max) {
+                                HashSet<Integer> value = ll.getValue();
+                                HashSet<Integer> ss = new HashSet<>(value);
+                                ss.add(j);
+                                toAdd = new Pair<>(i1, ss);
+                            }
+                        }
+                    } else {
+                        break;
+                    }
+                }
+
+                dp.add(toAdd);
+
+            }
+
+            System.out.println(dp.get(w).getKey());
+        }
+
+    }
+
+    public static void eggDropping() {
+
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int k = sc.nextInt();
+
+
+        }
+
+    }
+
+    //    longest-palindromic-subsequence (tabulation) 0.32s
+    public static void lps() {
+
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            String s = sc.next();
+            int l = s.length();
+            int[][] arr = new int[l][l];
+
+            for (int i = 0; i < l; i++) {
+                arr[i][i] = 1;
+            }
+            for (int i = 1; i < l; i++) {
+                for (int x = 0; x+i < l; x++) {
+                    int m = Integer.MIN_VALUE;
+
+                    int y = x+i;
+
+                    if(s.charAt(x)==s.charAt(y)){
+                        if(i==1){
+                            m=2;
+                        }else {
+                            m= 2+arr[x +1][y-1];
+                        }
+                    }
+
+                    int mm = Math.max(arr[x][y-1], arr[x +1][y]);
+                    if(mm>m){
+                        m = mm;
+                    }
+                    arr[x][y] = m;
+                }
+            }
+
+            System.out.println(arr[0][l-1]);
+
+        }
+
+    }
+
+    //    number-that-are-not-divisible
+    public static void numNotDiv() {
+
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+
+            long x = sc.nextLong();
+            long a = x;
+
+            x -= a/2;
+            x -= a/3;
+            x -= a/5;
+            x -= a/7;
+
+            x += Math.floorDiv(a, 2*3);
+            x += Math.floorDiv(a, 3*5);
+            x += Math.floorDiv(a, 5*7);
+            x += Math.floorDiv(a, 2*5);
+            x += Math.floorDiv(a, 2*7);
+            x += Math.floorDiv(a, 3*7);
+
+            x -= Math.floorDiv(a, 2*3*5);
+            x -= Math.floorDiv(a, 2*3*7);
+            x -= Math.floorDiv(a, 2*5*7);
+            x -= Math.floorDiv(a, 7*3*5);
+
+            x += Math.floorDiv(a, 2*3*5*7);
+
+            System.out.println(x);
+
+        }
     }
 
 

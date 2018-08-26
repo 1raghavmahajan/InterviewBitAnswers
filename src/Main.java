@@ -82,7 +82,7 @@ public class Main {
 //                }
 //            }
 
-            GFG.matrixMul2();
+            GFG.numNotDiv();
 //            System.out.println(list);
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));
