@@ -11,6 +11,7 @@ public class Main {
         for (int t = 0; t < 1; t++) {
 
             Scanner sc = new Scanner(System.in);
+
 //            int x1 = sc.nextInt();
 //            if (x1 == 0) {
 //                break;
@@ -19,6 +20,7 @@ public class Main {
 //            if (x2 == 0) {
 //                break;
 //            }
+
 //            int x3 = sc.nextInt();
 //            if (x3 == 0) {
 //                break;
@@ -68,6 +70,19 @@ public class Main {
 //                list.add(characters);
 //            }
 
+//            ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+//            for (int i = 0; i < x1; i++) {
+//                ArrayList<Integer> l = new ArrayList<>();
+//                for (int j = 0; j < x2; j++) {
+//                    l.add(sc.nextInt());
+//                }
+//                list.add(l);
+//            }
+
+            int[] xs = {2, 7};
+            int[] ys = {2, 9};
+            System.out.println(Graphs.solve(10, 15, 2, 2, xs, ys));
+
 
 //            String s = "";
 //            for (int i = 0; i < 989; i++) {
@@ -82,7 +97,6 @@ public class Main {
 //                }
 //            }
 
-            GFG.numNotDiv();
 //            System.out.println(list);
 
 //            System.out.println(StacksAndQueues.largestRectangleArea(list));

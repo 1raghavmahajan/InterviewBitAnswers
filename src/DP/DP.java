@@ -3,6 +3,7 @@ package DP;
 import javafx.util.Pair;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 @SuppressWarnings("Duplicates")
 public class DP {
@@ -655,7 +656,7 @@ public class DP {
                 else
                     return -1;
             });
-            
+
 
         }
 
@@ -958,5 +959,38 @@ public class DP {
         }
         return 0;
     }
+
+    //    largest-area-of-rectangle-with-permutations
+    public static int solve(int[][] A) {
+
+        int rows = A.length;
+        int cols = A[0].length;
+        int res[][] = new int[rows][cols];
+        int max = 0;
+
+        if(cols == 0)
+            return 0;
+
+        System.arraycopy(A[0], 0, res[0], 0, cols);
+
+        for(int j=0;j<cols;j++)
+            for(int i=1;i<rows;i++){
+                if(A[i][j] == 1)
+                    res[i][j] = res[i-1][j] + A[i][j];
+            }
+        for(int i = 0;i<rows;i++){
+            Arrays.sort(res[i]);
+        }
+
+        for(int i = 0;i<rows;i++){
+            for(int j=cols-1;j>=0;j--){
+                if(max < ((cols-j)*res[i][j]))
+                    max = (cols-j)*res[i][j];
+            }
+        }
+
+        return max;
+    }
+
 
 }

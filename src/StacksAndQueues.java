@@ -241,4 +241,40 @@ public class StacksAndQueues {
         return max_area;
     }
 
+    public static int trap(final int[] A) {
+
+        if(A.length<3){
+            return 0;
+        }
+
+        int lastm = 0;
+        int i=0;
+        int total = 0;
+
+        Stack<Integer> stack = new Stack<>();
+        while (i<A.length){
+            int st = i;
+            int curr = i+1;
+            while (A[curr-1]>A[curr]){
+                stack.push(curr-1);
+                curr++;
+            }
+            if(curr>i+1){
+                int btm = curr-1;
+                while (A[btm]==A[btm+1]){
+                    btm++;
+                }
+                while (A[curr]>=A[curr-1]){
+                    if(A[stack.peek()]<=A[curr]){
+//                        A[btm]
+                    }
+                }
+
+            }else {
+                i++;
+            }
+        }
+
+        return 0;
+    }
 }
